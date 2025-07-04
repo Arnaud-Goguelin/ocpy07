@@ -1,2 +1,0 @@
-[console_scripts]
-chess = progit_optimizer.__main__:main

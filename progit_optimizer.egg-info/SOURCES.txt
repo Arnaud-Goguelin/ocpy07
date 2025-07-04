@@ -1,6 +1,0 @@
-pyproject.toml
-progit_optimizer.egg-info/PKG-INFO
-progit_optimizer.egg-info/SOURCES.txt
-progit_optimizer.egg-info/dependency_links.txt
-progit_optimizer.egg-info/entry_points.txt
-progit_optimizer.egg-info/top_level.txt

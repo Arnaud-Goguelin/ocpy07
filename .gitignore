@@ -3,7 +3,7 @@ TODO
 .env
 .idea/
 spec.pdf
-progit_optimizer.egg-info.egg-info/
+profit_optimizer.egg-info.egg-info/
 
 # Ignore Python cache files
 __pycache__/

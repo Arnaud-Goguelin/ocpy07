@@ -1,13 +1,13 @@
 
 [project.scripts]
-chess = "progit_optimizer.__main__:main"
+profit = "profit_optimizer.__main__:main"
 #===========================
 [project]
-name = "progit_optimizer"
+name = "profit_optimizer"
 version = "0.1.0"
 description = "Optimiseur de profits sur l'achat d'actions en bourse"
 authors = [
-    {name = "Goguelin", email = "nice@try.com"}
+    {name = "Arnaud", email = "nice@try.com"}
 ]
 requires-python = ">=3.13"
 dependencies = []
