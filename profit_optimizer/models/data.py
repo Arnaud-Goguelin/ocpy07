@@ -1,7 +1,7 @@
 import csv
 import os
 
-from profit_optimizer.utils import DataFilesNames, logger
+from profit_optimizer.utils import DataFilesNames, DataValidationError, logger
 from .action import Action
 
 
@@ -19,8 +19,9 @@ class Data:
             files are missing.
         :return: None
         """
+
         if not os.path.exists(self.data_folder):
-            raise FileNotFoundError(f"Folder '{self.data_folder}' does not exist.")
+            raise DataValidationError(f"Folder '{self.data_folder}' does not exist.")
 
         missing_files = set()
 
@@ -30,7 +31,7 @@ class Data:
                 missing_files.add(file_name.value)
 
         if missing_files:
-            raise FileNotFoundError(f"Missing files: {', '.join(missing_files)}.")
+            raise DataValidationError(f"Missing files: {', '.join(missing_files)}.")
 
         logger.info("Data directory and files validated.")
 
@@ -42,8 +43,11 @@ class Data:
         :raises ValueError: If the file format is not compatible.
         :return: None
         """
-
-        self._validate_directory_and_files()
+        try:
+            self._validate_directory_and_files()
+        except DataValidationError as error:
+            logger.error(error)
+            return
 
         file_path = os.path.join(self.data_folder, DataFilesNames.brute_force.value)
 
