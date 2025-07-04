@@ -25,7 +25,7 @@ class Action:
         return arg
 
     def __repr__(self):
-        return f"{self.name}, {self.cost}€, {self.benefits}%"
+        return f"{self.name}, {self.profitability}"
 
     # need to make object Action hashable to be used in set()
     # here this means name is used has ID
@@ -35,3 +35,7 @@ class Action:
     # remember: criteria in __eq__ must be the same than in __hash__
     def __eq__(self, other):
         return self.name == other.name
+
+    @property
+    def profitability(self):
+        return (self.benefits / self.cost) * 100

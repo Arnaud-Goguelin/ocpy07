@@ -1,4 +1,6 @@
+from .algorithms import BrutForce
 from .models import Data
+
 
 class Application:
 
@@ -7,4 +9,5 @@ class Application:
         self.data.load()
 
     def run(self):
-        pass
+        brut_force = BrutForce(self.data.actions)
+        brut_force.run()
