@@ -1,0 +1,59 @@
+
+[project.scripts]
+chess = "progit_optimizer.__main__:main"
+#===========================
+[project]
+name = "progit_optimizer"
+version = "0.1.0"
+description = "Optimiseur de profits sur l'achat d'actions en bourse"
+authors = [
+    {name = "Goguelin", email = "nice@try.com"}
+]
+requires-python = ">=3.13"
+dependencies = []
+readme = "README.md"
+#===========================
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "flake8>=7.2.0",
+    "flake8-pyproject>=1.2.3",
+    "ipython>=9.0.0",
+    "ipdb>=0.13.0",
+]
+#===========================
+[tool.uv]
+package = true
+#===========================
+[tool.black]
+line-length = 119
+target-version = ['py313']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+#===========================
+[tool.flake8]
+max-line-length = 119
+extend-ignore = ["E203", "W503"]
+format = "html"
+htmldir = "flake8-report"
+exclude = [".venv", ".git",
+    "__pycache__",
+    "old",
+    "build",
+    "dist",
+    "__init__.py",
+    "**/__init__.py",
+    "*.pyc",]
+

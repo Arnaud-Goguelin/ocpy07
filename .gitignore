@@ -1,0 +1,21 @@
+TODO
+.envTemplate
+.env
+.idea/
+spec.pdf
+progit_optimizer.egg-info.egg-info/
+
+# Ignore Python cache files
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+
+# Ignore log files
+*.log
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+.venv
