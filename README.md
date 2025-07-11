@@ -1,0 +1,62 @@
+# Profit Optimizer
+
+
+
+
+## Requirements
+
+- Python 3.13 or higher
+- uv
+
+## Installation
+
+###  Using uv 
+
+**Install uv** (if not already installed):
+   ```bash
+   pip install uv
+   ```
+
+**Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd ocpy07
+   ```
+
+**Install dependencies**:
+   ```bash
+   # Install production dependencies only
+   uv sync
+   
+   # Install with development dependencies (for development/testing)
+   uv sync --group dev
+   ```
+
+## Running the Application
+
+   ```bash
+  uv run profit
+   ```
+### CLI Arguments
+   ```bash
+# Run greedy algorithm with default parameters
+uv run profit --brute-force
+
+# Run greedy algorithm with custom budget
+uv run profit --brute-force --budget 1000
+
+# Run greedy algorithm with purchase limit
+uv run profit --brute-force --limit 5
+
+# Run greedy algorithm with all parameters
+uv run profit --brute-force --budget 1000 --limit 3
+
+   ```
+## Development
+
+### Code Quality Tools
+
+This project uses several code quality tools:
+- **flake8**: Code linting and style checking
+- **black**: Code formatting
+- **flake8-pyproject**: Integration between flake8 and pyproject.toml
