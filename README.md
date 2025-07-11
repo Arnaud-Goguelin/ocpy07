@@ -40,16 +40,16 @@
 ### CLI Arguments
    ```bash
 # Run greedy algorithm with default parameters
-uv run profit --brute-force
+uv run profit --greedy
 
 # Run greedy algorithm with custom budget
-uv run profit --brute-force --budget 1000
+uv run profit --greedy --budget 1000
 
 # Run greedy algorithm with purchase limit
-uv run profit --brute-force --limit 5
+uv run profit --greedy --limit 5
 
 # Run greedy algorithm with all parameters
-uv run profit --brute-force --budget 1000 --limit 3
+uv run profit --greedy --budget 1000 --limit 3
 
    ```
 ## Development

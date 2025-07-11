@@ -1,6 +1,6 @@
 import argparse
 
-from .algorithms import BruteForce
+from .algorithms import Greedy
 from .models import Data
 
 
@@ -20,9 +20,9 @@ class Application:
         algo_group = parser.add_mutually_exclusive_group(required=True)
 
         algo_group.add_argument(
-            '--brute-force',
+            '--greedy',
             action='store_true',
-            help='Run the brute force algorithm'
+            help='Run the greedy algorithm'
             )
 
         parser.add_argument(
@@ -46,6 +46,6 @@ class Application:
         parser = self.create_parser()
         args = parser.parse_args()
 
-        if args.brute_force:
-            brute_force = BruteForce(self.data.actions, args.budget, args.limit)
-            brute_force.run()
+        if args.greedy:
+            greedy = Greedy(self.data.actions, args.budget, args.limit)
+            greedy.run()

@@ -1,7 +1,7 @@
 from profit_optimizer.utils import logger
 
 
-class BruteForce:
+class Greedy:
     def __init__(self, actions: set, max_budget: float, purchase_limit: int):
         self.actions: set = actions
         self.max_budget: float = max_budget
@@ -28,7 +28,7 @@ class BruteForce:
         return wallet
 
     def run(self):
-        logger.info("Running Brut Force algorithm")
+        logger.info("Running GREEDY algorithm")
         print()
         best_wallet = self.get_best_actions_wallet()
         print(f"{"=" * 10} Best wallet {"=" * 10}")
