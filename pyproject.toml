@@ -10,7 +10,9 @@ authors = [
     {name = "Arnaud", email = "nice@try.com"}
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "notebook>=7.4.4",
+]
 readme = "README.md"
 #===========================
 [dependency-groups]
@@ -46,8 +48,6 @@ exclude = '''
 [tool.flake8]
 max-line-length = 119
 extend-ignore = ["E203", "W503"]
-format = "html"
-htmldir = "flake8-report"
 exclude = [".venv", ".git",
     "__pycache__",
     "old",

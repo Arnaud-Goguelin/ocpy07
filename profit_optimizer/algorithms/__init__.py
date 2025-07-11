@@ -1,0 +1,1 @@
+from .brutforce import BrutForce

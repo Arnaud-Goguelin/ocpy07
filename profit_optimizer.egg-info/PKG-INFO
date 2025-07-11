@@ -1,7 +1,0 @@
-Metadata-Version: 2.4
-Name: profit_optimizer
-Version: 0.1.0
-Summary: Optimiseur de profits sur l'achat d'actions en bourse
-Author-email: Arnaud <nice@try.com>
-Requires-Python: >=3.13
-Description-Content-Type: text/markdown
