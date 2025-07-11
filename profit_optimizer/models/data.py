@@ -32,7 +32,7 @@ class Data:
 
         if missing_files:
             raise DataValidationError(f"Missing files: {', '.join(missing_files)}.")
-
+        print()
         logger.info("Data directory and files validated.")
 
     def load(self):
