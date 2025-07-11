@@ -22,7 +22,6 @@ class BrutForce:
                     wallet.append(action)
                     self.max_budget -= action.cost
                     purchase_count += 1
-                    print(action.name)
                 else:
                     break
         return wallet
