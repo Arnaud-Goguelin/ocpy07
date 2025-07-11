@@ -10,7 +10,9 @@ authors = [
     {name = "Arnaud", email = "nice@try.com"}
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "notebook>=7.4.4",
+]
 readme = "README.md"
 #===========================
 [dependency-groups]

@@ -11,21 +11,25 @@ class BrutForce:
         sorted_actions.reverse()
         return sorted_actions
 
-    def get_best_actions_wallet(self):
-        wallet = set()
+    def get_best_actions_wallet(self, purchase_limit: int):
+        wallet = []
         sorted_actions = self.sort_actions_by_profitability()
 
         for action in sorted_actions:
-            if action.cost <= self.max_budget:
-                wallet.add(action)
-                self.max_budget -= action.cost
-            else:
-                break
-        return sorted(wallet, key=lambda action: action.profitability, reverse=True)
+            purchase_count = 0
+            while purchase_count < purchase_limit:
+                if action.cost <= self.max_budget:
+                    wallet.append(action)
+                    self.max_budget -= action.cost
+                    purchase_count += 1
+                    print(action.name)
+                else:
+                    break
+        return wallet
 
     def run(self):
         logger.info("Running Brut Force algorithm")
-        best_wallet = self.get_best_actions_wallet()
+        best_wallet = self.get_best_actions_wallet(1)
         print(f"{"=" * 10} Best wallet {"=" * 10}")
         for action in best_wallet:
             logger.info(f"Action: {action.name}, Cost: {action.cost}, Profitability: {action.profitability}")
