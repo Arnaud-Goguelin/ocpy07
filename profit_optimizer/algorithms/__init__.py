@@ -1,1 +1,1 @@
-from .brutforce import BrutForce
+from .bruteforce import BruteForce
