@@ -49,7 +49,7 @@ class Data:
             logger.error(error)
             return
 
-        file_path = os.path.join(self.data_folder, DataFilesNames.brute_force.value)
+        file_path = os.path.join(self.data_folder, DataFilesNames.actions.value)
 
         with open(file_path, "r", encoding="utf-8") as file:
             reader = csv.DictReader(file)

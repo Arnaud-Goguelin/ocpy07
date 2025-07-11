@@ -1,1 +1,1 @@
-from .bruteforce import BruteForce
+from .greedy import Greedy
