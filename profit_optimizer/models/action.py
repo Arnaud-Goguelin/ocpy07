@@ -1,8 +1,8 @@
 class Action:
-    def __init__(self, name: str, cost: float, benefits: float):
+    def __init__(self, name: str, cost: float, profitability: float):
         self.name = self._validate_name(name)
         self.cost = self._validate_floats(cost)
-        self.benefits = self._validate_floats(benefits)
+        self.profitability = self._validate_floats(profitability)
 
     @staticmethod
     def _validate_name(name: str) -> str:
@@ -25,7 +25,7 @@ class Action:
         return arg
 
     def __repr__(self):
-        return f"{self.name}, {self.profitability}"
+        return f"{self.name}, {self.benefits}"
 
     # need to make object Action hashable to be used in set()
     # here this means name is used has ID
@@ -37,5 +37,5 @@ class Action:
         return self.name == other.name
 
     @property
-    def profitability(self):
-        return (self.benefits / self.cost) * 100
+    def benefits(self):
+        return (self.profitability / 100) * self.cost

@@ -61,11 +61,9 @@ class Data:
                 Action(
                     name=row["Actions"],
                     cost=row["Cost"],
-                    benefits=row["Benefits"],
-                    )
+                    profitability=row["Profitability"],
+                )
                 for row in reader
-                }
+            }
 
-        logger.info(
-            f"Data loaded from '{file_path}' - {len(self.actions)} rows loaded."
-            )
+        logger.info(f"Data loaded from '{file_path}' - {len(self.actions)} rows loaded.")
