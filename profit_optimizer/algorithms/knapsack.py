@@ -35,7 +35,7 @@ class Knapsack:
             # stop = end value, where we stop, this value is excluded!
             # step = incrementation
 
-            # thus here cost - 1 just after the action cost (in decreasing order),
+            # thus here stop at cost - 1 just after the action cost (in decreasing order),
             # so we stop iteration when action cost is reached
             # indeed, handle cases after this limit would mean the current budget is lower than cost
             # and we could not buy action
@@ -74,7 +74,7 @@ class Knapsack:
             #   dp[2cost] = max(0, benefits)
             #   dp[2cost] = benefits
 
-            for budget in range(max_budget_scaled, 0, -1):
+            for budget in range(max_budget_scaled, cost-1 , -1):
                 # buy as many as possible actions, respecting purchase_limit
                 # start at 1 because we cannot buy a fraction of an action
                 for quantity in range(1, self.purchase_limit + 1):
