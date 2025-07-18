@@ -65,7 +65,9 @@ class Knapsack:
             #   dp[2cost] = max(0, 2benefits)
             #   dp[2cost] = 2benefits
             #   here when we calculate dp[2cost], dp[cost] already has a value, that means we consider twice
-            #   benefits from action in this solution, which is incorrect
+            #   benefits from action in this solution, which is incorrect, when did bought the action in this case
+            #   the first time?
+            #   what about the quantity set to 1 ? in this case quantity is 2 which do not respect limit
             #
             #   in decreasing order, let's assume quantity = 1,
             #   dp[2cost] = max(dp[2cost], dp[2cost - cost] + benefits)
