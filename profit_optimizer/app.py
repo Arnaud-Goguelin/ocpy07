@@ -1,6 +1,6 @@
 import argparse
 
-from .algorithms import Greedy, Knapsack
+from .algorithms import Greedy, Knapsack, Pruning
 from .models import Data
 
 
@@ -20,6 +20,9 @@ class Application:
         algo_group.add_argument("--greedy", action="store_true", help="Run the greedy algorithm")
 
         algo_group.add_argument("--knapsack", action="store_true", help="Run the knapsack algorithm")
+
+        algo_group.add_argument("--pruning", action="store_true", help="Run the knapsack algorithm optimized with "
+                                                                       "pruning")
 
         parser.add_argument(
             "--budget", type=float, default=500.0, help="Maximum budget for investments (default: 500.0)"
@@ -41,3 +44,7 @@ class Application:
         if args.knapsack:
             knapsack = Knapsack(self.data.actions, args.budget, args.limit)
             knapsack.run()
+
+        if args.pruning:
+            pruning = Pruning(self.data.actions, args.budget, args.limit)
+            pruning.run()
