@@ -28,9 +28,11 @@ class Greedy:
         return wallet
 
     def run(self):
+        print("=" * 80)
         logger.info("Running GREEDY algorithm")
-        print()
+        print("=" * 80)
         best_wallet = self.get_best_actions_wallet()
+        print()
         print(f"{"=" * 10} Best wallet {"=" * 10}")
         for action in best_wallet:
             logger.info(f"Action: {action.name}, Cost: {action.cost}, Benefits: {action.benefits}")
