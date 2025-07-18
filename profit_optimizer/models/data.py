@@ -61,7 +61,7 @@ class Data:
                 Action(
                     name=row["Actions"],
                     cost=row["Cost"],
-                    benefits=row["Benefits"],
+                    profitability=row["Profitability"],
                     )
                 for row in reader
                 }
