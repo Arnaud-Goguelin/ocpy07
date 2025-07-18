@@ -38,5 +38,9 @@ class Greedy:
         print("Number of actions: ", len(best_wallet))
         print("Total cost: ", sum(action.cost for action in best_wallet))
         print("Total benefits: ", sum(action.benefits for action in best_wallet))
-        print("Profitability: ", (sum(action.benefits for action in best_wallet) / sum(action.cost for action in best_wallet))*100,"%")
+        print(
+            "Profitability: ",
+            (sum(action.benefits for action in best_wallet) / sum(action.cost for action in best_wallet)) * 100,
+            "%",
+        )
         print("=" * 80)

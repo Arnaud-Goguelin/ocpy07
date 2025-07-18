@@ -7,7 +7,7 @@ logging.basicConfig(
     handlers=[
         # display in terminal
         logging.StreamHandler(),
-        ]
-    )
+    ],
+)
 
 logger = logging.getLogger(__name__)
