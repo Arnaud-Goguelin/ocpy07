@@ -1,6 +1,6 @@
 import argparse
 
-from .algorithms import BruteForce, Greedy
+from .algorithms import Greedy, Knapsack
 from .models import Data
 
 
@@ -19,7 +19,7 @@ class Application:
 
         algo_group.add_argument("--greedy", action="store_true", help="Run the greedy algorithm")
 
-        algo_group.add_argument("--brute", action="store_true", help="Run the brute force algorithm")
+        algo_group.add_argument("--knapsack", action="store_true", help="Run the knapsack algorithm")
 
         parser.add_argument(
             "--budget", type=float, default=500.0, help="Maximum budget for investments (default: 500.0)"
@@ -38,6 +38,6 @@ class Application:
             greedy = Greedy(self.data.actions, args.budget, args.limit)
             greedy.run()
 
-        if args.brute:
-            brute = BruteForce(self.data.actions, args.budget, args.limit)
-            brute.run()
+        if args.knapsack:
+            knapsack = Knapsack(self.data.actions, args.budget, args.limit)
+            knapsack.run()

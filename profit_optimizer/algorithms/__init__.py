@@ -1,2 +1,2 @@
 from .greedy import Greedy
-from .brute_force import BruteForce
+from .knapsack import Knapsack

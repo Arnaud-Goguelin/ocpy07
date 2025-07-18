@@ -2,7 +2,7 @@ from profit_optimizer.utils import logger
 from ..utils import SCALE_FACTOR
 
 
-class BruteForce:
+class Knapsack:
     def __init__(self, actions: set, max_budget: float, purchase_limit: int):
         self.actions: set = actions
         self.max_budget: float = max_budget
@@ -48,11 +48,32 @@ class BruteForce:
 
             # iterate in max budget in decreasing order to avoid to
             # count several times the same actions in profitability calculation
+            # look at calculation formula on line 69 to understand
 
             # in decreasing order, value for dp[budget] are not yet changed
-            # in ascending order, dp[cost] (the lowest available budget) would be equal to action.profitability
-            # and dp[max_budget] would be equal to dp[cost] + action.profitability == 2 * action.profitability
-            # because dp[cost] is already == action.profitability
+            # here is an example in ascending order:
+            # let's assume quantity = 1,
+            #   when budget = cost (the lowest possible); thus dp[cost] = max(dp[cost], dp[cost - cost] + benefits)
+            #   as dp[cost] is not yet defined, we have dp[cost] = max(0, dp[0] + benefits)
+            #   and eventually dp[cost] = max(0, 0+benefits) => dp[cost] = benefits
+            #
+            #   when budget = 2 * cost; thus dp[2cost] = max(dp[2cost], dp[2cost - cost] + benefits)
+            #   then dp[2cost] = max(dp[2cost], dp[cost] + benefits)
+            #   dp[2cost] = max(dp[2cost], benefits + benefits)
+            #   dp[2cost] = max(dp[2cost], 2benefits)
+            #   but at this point dp[2cost] is not defined yet thus
+            #   dp[2cost] = max(0, 2benefits)
+            #   dp[2cost] = 2benefits
+            #   here when we calculate dp[2cost], dp[cost] already has a value, that means we consider twice
+            #   benefits from action in this solution, which is incorrect
+            #
+            #   in decreasing order, let's assume quantity = 1,
+            #   dp[2cost] = max(dp[2cost], dp[2cost - cost] + benefits)
+            #   dp[2cost] = max(dp[2cost], dp[cost] + benefits)
+            #   dp[2cost] = max(dp[2cost], 0 + benefits)
+            #   dp[2cost] = max(0, benefits)
+            #   dp[2cost] = benefits
+
 
             for budget in range(max_budget_scaled, cost - 1, -1):
                 # buy as many as possible actions, respecting purchase_limit
@@ -63,6 +84,7 @@ class BruteForce:
                         # between current profitability for current budget
                         # and
                         # new calculated profitability for budget - action.cost (thus when we buy the action)
+                        # result is put in dp list at index(=budget) place
                         dp[budget] = max(dp[budget], dp[budget - cost * quantity] + benefits * quantity)
 
         result = dp[max_budget_scaled]
