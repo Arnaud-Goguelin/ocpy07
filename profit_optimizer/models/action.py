@@ -25,7 +25,7 @@ class Action:
         return arg
 
     def __repr__(self):
-        return f"{self.name}, {self.benefits}"
+        return f"{self.name}, profitability = {self.profitability}"
 
     # need to make object Action hashable to be used in set()
     # here this means name is used has ID
