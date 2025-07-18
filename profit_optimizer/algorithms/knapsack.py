@@ -1,4 +1,4 @@
-from profit_optimizer.utils import logger
+from profit_optimizer.utils import logger, timing_decorator
 from ..utils import SCALE_FACTOR
 
 
@@ -8,10 +8,9 @@ class Knapsack:
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
 
+    @timing_decorator("KNAPSACK")
     def run(self):
-        print("=" * 80)
-        logger.info("Running BRUTE FORCE algorithm")
-        print("=" * 80)
+
         # as we work with €, * SCALE_FACTOR to convert € with decimals into int
         max_budget_scaled = int(self.max_budget * SCALE_FACTOR)
 
@@ -30,7 +29,6 @@ class Knapsack:
             benefits = action.benefits
 
             logger.info(f"Analyzing action: {action.__repr__()}")
-
 
             # reminder range(start, stop, step)
             # start = start value, from where we start
@@ -76,8 +74,7 @@ class Knapsack:
             #   dp[2cost] = max(0, benefits)
             #   dp[2cost] = benefits
 
-
-            for budget in range(max_budget_scaled, cost - 1, -1):
+            for budget in range(max_budget_scaled, 0, -1):
                 # buy as many as possible actions, respecting purchase_limit
                 # start at 1 because we cannot buy a fraction of an action
                 for quantity in range(1, self.purchase_limit + 1):
@@ -91,5 +88,5 @@ class Knapsack:
 
         result = dp[max_budget_scaled]
         print("=" * 80)
-        logger.info(f"Benefits: {result}")
-        print("=" * 80)
+        logger.info(f"Max Benefits: {result}")
+        logger.info(f"Total Cost: {max_budget_scaled / SCALE_FACTOR}")

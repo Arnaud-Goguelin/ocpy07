@@ -1,4 +1,4 @@
-from profit_optimizer.utils import logger
+from profit_optimizer.utils import logger, timing_decorator
 
 
 class Greedy:
@@ -27,10 +27,8 @@ class Greedy:
                     break
         return wallet
 
+    @timing_decorator("GREEDY")
     def run(self):
-        print("=" * 80)
-        logger.info("Running GREEDY algorithm")
-        print("=" * 80)
         best_wallet = self.get_best_actions_wallet()
         print()
         print(f"{"=" * 10} Best wallet {"=" * 10}")
@@ -45,4 +43,3 @@ class Greedy:
             (sum(action.benefits for action in best_wallet) / sum(action.cost for action in best_wallet)) * 100,
             "%",
         )
-        print("=" * 80)
