@@ -140,7 +140,10 @@ class Pruning:
         """
         # Initial sort to optimize pruning
         # Higher ratio actions are explored first, improving bound calculations
-        # self.actions.sort(key=lambda a: a.benefits, reverse=True)
+        # MOREOVER: use a list is necessary with this algorithm to get each time the same result
+        # if we keep a set, it is not ordered, and pruning algo may reach different bounds each time and not find
+        # the same result each time
+        self.actions.sort(key=lambda a: a.benefits, reverse=True)
 
         # Initialize and run algorithm
         self.max_benefits = 0
@@ -148,6 +151,7 @@ class Pruning:
 
         print("=" * 80)
         print(f"{"=" * 10} Best wallet {"=" * 10}")
+        self.best_combination.sort(key=lambda a: a.benefits, reverse=True)
         for action in self.best_combination:
             print(f"Action: {action.name}, Cost: {action.cost}, Benefits: {action.benefits}")
         print()

@@ -4,14 +4,9 @@ from profit_optimizer.utils import logger, timing_decorator
 
 class Greedy:
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
-        self.actions: set = actions
+        self.actions: list = list(actions)
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
-
-    def sort_actions_by_benefits(self):
-        sorted_actions = sorted(self.actions, key=lambda a: a.benefits)
-        sorted_actions.reverse()
-        return sorted_actions
 
     def get_best_actions_wallet(self):
         """
@@ -24,7 +19,7 @@ class Greedy:
         :rtype: list
         """
         wallet = []
-        sorted_actions = self.sort_actions_by_benefits()
+        sorted_actions = sorted(self.actions, key=lambda a: a.benefits, reverse=True)
 
         for action in sorted_actions:
             purchase_count = 0
