@@ -1,6 +1,7 @@
 from datetime import datetime
 from functools import wraps
-from profit_optimizer.utils import logger
+
+from .logger import logger
 
 
 def timing_decorator(algorithm_name: str):
