@@ -3,8 +3,8 @@ from profit_optimizer.utils import logger, timing_decorator
 
 
 class Greedy:
-    def __init__(self, actions: list[Action], max_budget: float, purchase_limit: int):
-        self.actions: list = actions
+    def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
+        self.actions: list = list(actions)
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
 
