@@ -15,10 +15,12 @@ class Action:
     @staticmethod
     def _validate_floats(arg: float) -> float:
         if isinstance(arg, str):
-            if not arg.isdigit():
-                raise TypeError(f"{arg} must be a float")
-            # data files are corrupted and may contains negative values, keep absolute values to handle this
-            arg = abs(float(arg))
+            try:
+                arg = float(arg)
+            except ValueError:
+                raise ValueError(f"{arg} must be a float")
+        # data files are corrupted and may contains negative values, keep absolute values to handle this
+        arg = abs(float(arg))
 
         if arg <= 0:
             raise ValueError(f"{arg} must be positive")
