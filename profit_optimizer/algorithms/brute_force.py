@@ -12,9 +12,13 @@ class BruteForce:
         self.best_cost = 0.0
         self.combinations_explored = 0
 
+    def _generate_branch_recursive(
+        self,
+        index: int,
+        current_actions_combination: list[Action],
+        remaining_budget: float,
+    ):
 
-    def _generate_branch_recursive(self, index: int, current_actions_combination: list[Action], remaining_budget
-: float):
         self.combinations_explored += 1
 
         # in case we reach last action
@@ -32,7 +36,8 @@ class BruteForce:
             return
 
         # if we did not reach last action, we have 2 choices to generate the branch
-        # first choice: do not purchase action and continue to explore the branch by calling recursively _generate_branch_recursive
+        # first choice: do not purchase action and continue to explore the branch
+        # by calling recursively _generate_branch_recursive
         self._generate_branch_recursive(index + 1, current_actions_combination, remaining_budget)
 
         # seconde choice: buy the action and continue exploring this new branch by calling recursively
@@ -45,7 +50,9 @@ class BruteForce:
                 if total_cost <= remaining_budget:
                     current_actions_combination.append(current_action)
 
-                    self._generate_branch_recursive(index + 1, current_actions_combination, remaining_budget - total_cost)
+                    self._generate_branch_recursive(
+                        index + 1, current_actions_combination, remaining_budget - total_cost
+                    )
 
                     # Backtrack: once branch is explored,
                     # remove last action added to explore other branches
