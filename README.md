@@ -39,6 +39,9 @@
    ```
 ### CLI Arguments
    ```bash
+   
+# Run greedy algorithm with default parameters on dataset_1
+uv run profit --file dataset_1 --greedy
 # Run greedy algorithm with default parameters
 uv run profit --greedy
 
@@ -49,9 +52,23 @@ uv run profit --greedy --budget 1000
 uv run profit --greedy --limit 5
 
 # Run greedy algorithm with all parameters
-uv run profit --greedy --budget 1000 --limit 3
-
+uv run profit --file dataset_1 --greedy --budget 1000 --limit 3
    ```
+**Others values for args are:**
+- **data files**: dataset_test | dataset_1 | dataset_2
+- **algorithm**: greedy | knapsack | brute | pruning
+- **budget**: at your convenience
+- **limit**: at your convenience
+  
+
+⚠️⚠️⚠️**Warning**⚠️⚠️⚠️:
+  
+Brute force algorithm has exponential time complexity: O(2^n).
+  
+It may take several **years** to run on dataset_1 and dataset_2 (files with 1000 rows each) but 0.5 sec to run on 
+dataset_test (20 rows)
+
+
 ## Development
 
 ### Code Quality Tools
