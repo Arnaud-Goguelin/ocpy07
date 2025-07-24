@@ -21,11 +21,13 @@ class Application:
 
         algo_group.add_argument("--knapsack", action="store_true", help="Run the knapsack algorithm")
 
-        algo_group.add_argument("--pruning", action="store_true", help="Run the knapsack algorithm optimized with "
-                                                                       "pruning")
+        algo_group.add_argument(
+            "--pruning", action="store_true", help="Run the branch and bound algorithm " "with pruning optimization"
+        )
 
-        algo_group.add_argument("--brute", action="store_true", help="Run the knapsack algorithm optimized with "
-                                                                       "pruning")
+        algo_group.add_argument(
+            "--brute", action="store_true", help="Run the brute force algorithm (explores all combinations)"
+        )
 
         parser.add_argument(
             "--budget", type=float, default=500.0, help="Maximum budget for investments (default: 500.0)"
