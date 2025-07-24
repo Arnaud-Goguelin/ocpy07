@@ -86,19 +86,16 @@ class BruteForce:
         # _generate_branch_recursive
         current_action = self.actions[index]
 
-        if current_action.cost <= self.max_budget:
-            for quantity in range(1, self.purchase_limit + 1):
-                total_cost = current_action.cost * quantity
-                if total_cost <= remaining_budget:
-                    current_actions_combination.append(current_action)
+        for quantity in range(1, self.purchase_limit + 1):
+            total_cost = current_action.cost * quantity
+            if total_cost <= remaining_budget:
+                current_actions_combination.append(current_action)
 
-                    self._generate_branch_recursive(
-                        index + 1, current_actions_combination, remaining_budget - total_cost
-                    )
+                self._generate_branch_recursive(index + 1, current_actions_combination, remaining_budget - total_cost)
 
-                    # Backtrack: once branch is explored,
-                    # remove last action added to explore other branches
-                    current_actions_combination.pop()
+                # Backtrack: once branch is explored,
+                # remove last action added to explore other branches
+                current_actions_combination.pop()
 
     @timing_decorator("BRUTE FORCE")
     def run(self) -> None:
