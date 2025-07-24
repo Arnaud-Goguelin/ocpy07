@@ -25,16 +25,15 @@ class Action:
         return arg
 
     def __repr__(self):
-        return f"{self.name}, profitability = {self.profitability}"
+        return f"{self.name}, benefits = {self.benefits}"
 
-    # need to make object Action hashable to be used in set()
-    # here this means name is used has ID
-    def __hash__(self):
-        return hash(self.name)
+    # Identify same objects can make algorithms faster, avoiding analyzing duplicates
+    def __eq__(self, other):
+        return self.benefits == other.benefits and self.cost == other.cost
 
     # remember: criteria in __eq__ must be the same than in __hash__
-    def __eq__(self, other):
-        return self.name == other.name
+    def __hash__(self):
+        return hash((self.benefits, self.cost))
 
     @property
     def benefits(self):
