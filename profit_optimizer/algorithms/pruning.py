@@ -3,6 +3,39 @@ from profit_optimizer.utils import timing_decorator
 
 
 class Pruning:
+    """
+    Branch-and-Bound algorithm with pruning for the knapsack problem.
+    Intelligently explores the solution space by eliminating unpromising branches.
+
+    Time Complexity:
+        - Worst case: O((L+1)^n) - identical to brute force if no pruning occurs
+        - Average case: O(2^(n/2)) to O(2^(3n/4)) - thanks to effective pruning
+            note: those are just empirical observations
+        - Best case: O(n²) - when pruning is highly effective
+        where n = number of actions, L = purchase_limit
+
+        Efficiency depends on:
+        - Quality of the bound() function (upper bound)
+        - Initial sorting order of actions (by decreasing benefits is the best in our case)
+        - Diversity of action costs/benefits (the bigger the gaps the better)
+
+    Space Complexity: O(n) where:
+        - n = number of actions (maximum recursion depth)
+        - Additional O(k) for storing the best combination, where k ≤ n*L
+        - The current_combination list grows and shrinks during backtracking
+        - Overall space is dominated by recursion stack: O(n)
+        - Space identical to brute force despite temporal optimization
+
+    Pruning advantages:
+        - Eliminates unpromising branches through bound()
+        - Initial sorting optimizes exploration order
+        - Quickly finds good solutions to improve pruning effectiveness
+
+    Note: DO NOT guarantee the optimal solution like brute force,
+    unless we have an initial sorting of actions by decreasing benefits.
+    But it is much more efficient.
+    """
+
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: list = list(actions)
         self.max_budget: float = max_budget
