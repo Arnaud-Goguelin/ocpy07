@@ -3,7 +3,6 @@ from profit_optimizer.utils import timing_decorator
 
 
 class Pruning:
-
     """
     Branch-and-Bound algorithm with pruning for the knapsack problem.
     Intelligently explores the solution space by eliminating unpromising branches.

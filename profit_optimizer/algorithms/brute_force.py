@@ -3,7 +3,6 @@ from profit_optimizer.utils import timing_decorator
 
 
 class BruteForce:
-
     """
     Brute Force algorithm for the knapsack problem that explores all possible combinations
     of actions to find the optimal solution.
@@ -25,7 +24,6 @@ class BruteForce:
     Note: This algorithm guarantees finding the optimal solution but becomes
     impractical for large datasets due to exponential time complexity.
     """
-
 
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: list = list(actions)

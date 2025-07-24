@@ -4,7 +4,6 @@ from ..utils import SCALE_FACTOR
 
 
 class Knapsack:
-
     """
     Dynamic Programming solution for the bounded knapsack problem.
     Uses bottom-up approach to find the optimal combination of actions.
