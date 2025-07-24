@@ -1,4 +1,4 @@
-from profit_optimizer.utils import logger, timing_decorator
+from profit_optimizer.utils import timing_decorator
 from ..utils import SCALE_FACTOR
 
 
@@ -12,6 +12,7 @@ class Knapsack:
     def run(self):
 
         # as we work with €, * SCALE_FACTOR to convert € with decimals into int
+        # because budget is used as an index in this algo
         max_budget_scaled = int(self.max_budget * SCALE_FACTOR)
 
         # dp = dynamic programming
@@ -27,8 +28,6 @@ class Knapsack:
         for action in self.actions:
             cost = int(action.cost * SCALE_FACTOR)
             benefits = action.benefits
-
-            logger.info(f"Analyzing action: {action.__repr__()}")
 
             # reminder range(start, stop, step)
             # start = start value, from where we start
@@ -74,7 +73,7 @@ class Knapsack:
             #   dp[2cost] = max(0, benefits)
             #   dp[2cost] = benefits
 
-            for budget in range(max_budget_scaled, cost-1 , -1):
+            for budget in range(max_budget_scaled, cost - 1, -1):
                 # buy as many as possible actions, respecting purchase_limit
                 # start at 1 because we cannot buy a fraction of an action
                 for quantity in range(1, self.purchase_limit + 1):
@@ -88,5 +87,4 @@ class Knapsack:
 
         result = dp[max_budget_scaled]
         print("=" * 80)
-        logger.info(f"Max Benefits: {result}")
-        logger.info(f"Total Cost: {max_budget_scaled / SCALE_FACTOR}")
+        print(f"Max Benefits: {result}")

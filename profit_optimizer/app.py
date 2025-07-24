@@ -1,6 +1,6 @@
 import argparse
 
-from .algorithms import Greedy, Knapsack, Pruning
+from .algorithms import BruteForce, Greedy, Knapsack, Pruning
 from .models import Data
 
 
@@ -21,8 +21,13 @@ class Application:
 
         algo_group.add_argument("--knapsack", action="store_true", help="Run the knapsack algorithm")
 
-        algo_group.add_argument("--pruning", action="store_true", help="Run the knapsack algorithm optimized with "
-                                                                       "pruning")
+        algo_group.add_argument(
+            "--pruning", action="store_true", help="Run the branch and bound algorithm " "with pruning optimization"
+        )
+
+        algo_group.add_argument(
+            "--brute", action="store_true", help="Run the brute force algorithm (explores all combinations)"
+        )
 
         parser.add_argument(
             "--budget", type=float, default=500.0, help="Maximum budget for investments (default: 500.0)"
@@ -48,3 +53,7 @@ class Application:
         if args.pruning:
             pruning = Pruning(self.data.actions, args.budget, args.limit)
             pruning.run()
+
+        if args.brute:
+            brute = BruteForce(self.data.actions, args.budget, args.limit)
+            brute.run()
