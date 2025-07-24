@@ -91,9 +91,7 @@ class BruteForce:
             if total_cost <= remaining_budget:
                 current_actions_combination.append(current_action)
 
-                self._generate_branch_recursive(
-                    index + 1, current_actions_combination, remaining_budget - total_cost
-                )
+                self._generate_branch_recursive(index + 1, current_actions_combination, remaining_budget - total_cost)
 
                 # Backtrack: once branch is explored,
                 # remove last action added to explore other branches
