@@ -49,7 +49,7 @@ class Data:
             logger.error(error)
             return
 
-        file_path = os.path.join(self.data_folder, DataFilesNames.actions.value)
+        file_path = os.path.join(self.data_folder, DataFilesNames.test.value)
 
         with open(file_path, "r", encoding="utf-8") as file:
             reader = csv.DictReader(file)
@@ -59,13 +59,22 @@ class Data:
 
             # using a set allows us to delete duplicate Action (cf. __eq__ method in Action model)
             # this avoids to analyze many times the same actions in algorithms
-            self.actions = {
-                Action(
-                    name=row["Actions"],
-                    cost=row["Cost"],
-                    profitability=row["Profitability"],
-                )
-                for row in reader
-            }
+            actions_set = set()
+            errors_count = 0
 
-        logger.info(f"Data loaded from '{file_path}' - {len(self.actions)} rows loaded.")
+            for row in reader:
+                try:
+                    new_action = Action(
+                            name=row["Actions"],
+                            cost=row["Cost"],
+                            profitability=row["Profitability"],
+                        )
+                    if new_action:
+                        actions_set.add(new_action)
+
+                except (TypeError, ValueError) as error:
+                    logger.warning(f"Action {row["Action"]} ignored, error while reading CSV file: {error}")
+                    errors_count += 1
+
+        self.actions = actions_set
+        logger.info(f"Data loaded from '{file_path}' - {len(self.actions)} rows loaded. {errors_count} errors ignored.")

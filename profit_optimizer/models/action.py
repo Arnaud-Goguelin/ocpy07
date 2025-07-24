@@ -17,9 +17,10 @@ class Action:
         if isinstance(arg, str):
             if not arg.isdigit():
                 raise TypeError(f"{arg} must be a float")
-            arg = float(arg)
+            # data files are corrupted and may contains negative values, keep absolute values to handle this
+            arg = abs(float(arg))
 
-        if arg < 0:
+        if arg <= 0:
             raise ValueError(f"{arg} must be positive")
 
         return arg
