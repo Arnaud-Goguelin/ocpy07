@@ -1,8 +1,9 @@
+from profit_optimizer.models import Action
 from profit_optimizer.utils import logger, timing_decorator
 
 
 class Greedy:
-    def __init__(self, actions: set, max_budget: float, purchase_limit: int):
+    def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: set = actions
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
@@ -13,6 +14,15 @@ class Greedy:
         return sorted_actions
 
     def get_best_actions_wallet(self):
+        """
+        Selects the best actions for a wallet based on the sorted by benefits actions list
+        while adhering to the constraints of the maximum budget and purchase limit. The selected
+        actions are greedily added to the wallet until no more actions can be purchased within
+        the budget or the purchase limit is exhausted.
+
+        :return: A list of selected actions ordered by their benefits
+        :rtype: list
+        """
         wallet = []
         sorted_actions = self.sort_actions_by_benefits()
 

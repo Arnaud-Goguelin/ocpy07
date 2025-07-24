@@ -17,16 +17,32 @@ class Application:
         # Groupe d'arguments mutuellement exclusifs pour les algorithmes
         algo_group = parser.add_mutually_exclusive_group(required=True)
 
-        algo_group.add_argument("--greedy", action="store_true", help="Run the greedy algorithm")
-
-        algo_group.add_argument("--knapsack", action="store_true", help="Run the knapsack algorithm")
-
         algo_group.add_argument(
-            "--pruning", action="store_true", help="Run the branch and bound algorithm " "with pruning optimization"
+            "--greedy",
+            action="store_true",
+            help="Run the greedy algorithm, return the best " "combination of actions with the best benefits.",
         )
 
         algo_group.add_argument(
-            "--brute", action="store_true", help="Run the brute force algorithm (explores all combinations)"
+            "--knapsack",
+            action="store_true",
+            help="Run the knapsack algorithm, "
+            "return an approximation of the best "
+            "benefits reachable with the budget.",
+        )
+
+        algo_group.add_argument(
+            "--pruning",
+            action="store_true",
+            help="Run the branch and bound algorithm with pruning optimization, "
+            "return the best combination of actions with the best benefits.",
+        )
+
+        algo_group.add_argument(
+            "--brute",
+            action="store_true",
+            help="Run the brute force algorithm (explores all combinations), "
+            "return the best combination of actions with the best benefits.",
         )
 
         parser.add_argument(
