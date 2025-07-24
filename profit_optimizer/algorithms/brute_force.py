@@ -18,6 +18,26 @@ class BruteForce:
         current_actions_combination: list[Action],
         remaining_budget: float,
     ):
+        """
+        Recursively generates action combinations to maximize benefits within
+        a given budget and constraints. Explores all potential branches by either
+        including or excluding an action in the current combination. Updates
+        the best combination found if it results in higher benefits and
+        remains within budget.
+
+        :param index: Integer representing the current index of the action
+            being explored in the actions list.
+        :type index: int
+        :param current_actions_combination: List of Action objects currently
+            being considered in this branch.
+        :type current_actions_combination: list[Action]
+        :param remaining_budget: Float value representing the remaining budget
+            available for exploring further branches.
+        :type remaining_budget: float
+        :return: None. The function operates recursively, updating the instance's
+            best combination, cost, and benefits as needed.
+        :rtype: None
+        """
 
         self.combinations_explored += 1
 

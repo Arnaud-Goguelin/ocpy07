@@ -1,16 +1,44 @@
 from profit_optimizer.utils import timing_decorator
+from ..models import Action
 from ..utils import SCALE_FACTOR
 
 
 class Knapsack:
-    def __init__(self, actions: set, max_budget: float, purchase_limit: int):
+    def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: set = actions
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
 
     @timing_decorator("KNAPSACK")
     def run(self):
+        """
+        Run the optimized knapsack algorithm to calculate the maximum possible profit within the given constraints.
 
+        Implements a dynamic programming solution to the knapsack problem, where each possible budget
+        amount is treated as an index in an array (`dp`). This algorithm determines the maximum profitability possible
+        given a list of actions, each having an associated cost and benefit.
+        The solution considers specific constraints, such as the maximum budget and the purchase limit per action.
+
+        The core logic includes:
+        - Converting monetary values to integers by scaling, in order to handle decimals in the budget calculations.
+        - Iterating over each action and determining whether purchasing it—given the current budget and quantity—yields
+          greater profitability compared to the existing state.
+        - Using backward iteration over the budget values to ensure
+         no action is counted more than once in a single solution.
+
+        Constraints like `purchase_limit` are applied to ensure that no single action
+        is bought more than the allowed number of times, and the solution ensures calculations respect these
+        constraints.
+
+        :param max_budget: The total monetary budget available.
+        :type max_budget: float
+        :param actions: List of all possible actions, where each action has associated cost and benefit values.
+        :type actions: list[Action]
+        :param purchase_limit: The maximum quantity of an individual action that can be purchased.
+        :type purchase_limit: int
+        :returns: The maximum profitability that can be achieved under the constraints.
+        :rtype: int
+        """
         # as we work with €, * SCALE_FACTOR to convert € with decimals into int
         # because budget is used as an index in this algo
         max_budget_scaled = int(self.max_budget * SCALE_FACTOR)
