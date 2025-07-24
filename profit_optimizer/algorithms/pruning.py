@@ -3,8 +3,8 @@ from profit_optimizer.utils import timing_decorator
 
 
 class Pruning:
-    def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
-        self.actions: list = list(actions)
+    def __init__(self, actions: list[Action], max_budget: float, purchase_limit: int):
+        self.actions: list = actions
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
         self.max_benefits = 0
@@ -148,6 +148,7 @@ class Pruning:
 
         print("=" * 80)
         print(f"{"=" * 10} Best wallet {"=" * 10}")
+        self.best_combination.sort(key=lambda a: a.benefits, reverse=True)
         for action in self.best_combination:
             print(f"Action: {action.name}, Cost: {action.cost}, Benefits: {action.benefits}")
         print()

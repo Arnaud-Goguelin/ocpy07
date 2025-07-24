@@ -8,7 +8,7 @@ from .action import Action
 class Data:
 
     def __init__(self):
-        self.actions: set = set()
+        self.actions: list = []
         self.data_folder = "profit_optimizer/data"
 
     def _validate_directory_and_files(self):
@@ -57,13 +57,13 @@ class Data:
             # read first line and ignore it => skip headers
             next(reader)
 
-            self.actions = {
+            self.actions = [
                 Action(
                     name=row["Actions"],
                     cost=row["Cost"],
                     profitability=row["Profitability"],
                 )
                 for row in reader
-            }
+            ]
 
         logger.info(f"Data loaded from '{file_path}' - {len(self.actions)} rows loaded.")
