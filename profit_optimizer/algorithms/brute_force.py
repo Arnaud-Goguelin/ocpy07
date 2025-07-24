@@ -3,6 +3,30 @@ from profit_optimizer.utils import timing_decorator
 
 
 class BruteForce:
+
+    """
+    Brute Force algorithm for the knapsack problem that explores all possible combinations
+    of actions to find the optimal solution.
+
+    Time Complexity: O((L+1)^n) where:
+        - n = number of actions
+        - L = purchase_limit
+        - For each action, we have (L+1) choices: buy 0, 1, 2, ..., L quantities
+        - This results in (L+1)^n total combinations to explore
+        - When L=1 (typical case), this simplifies to O(2^n),
+        2 is the number of choices we have for each action: buy it or not
+
+    Space Complexity: O(n) where:
+        - n = number of actions (maximum recursion depth)
+        - Additional O(k) for storing the best combination, where k ≤ n*L (because of contraint: the budget)
+        - The current_combination list grows and shrinks during backtracking
+        - Overall space is dominated by recursion stack: O(n)
+
+    Note: This algorithm guarantees finding the optimal solution but becomes
+    impractical for large datasets due to exponential time complexity.
+    """
+
+
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: list = list(actions)
         self.max_budget: float = max_budget

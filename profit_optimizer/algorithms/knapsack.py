@@ -4,6 +4,27 @@ from ..utils import SCALE_FACTOR
 
 
 class Knapsack:
+
+    """
+    Dynamic Programming solution for the bounded knapsack problem.
+    Uses bottom-up approach to find the optimal combination of actions.
+
+    Time Complexity: O(n * W * L) where:
+        - n = number of actions
+        - W = scaled budget (max_budget * SCALE_FACTOR)
+        - L = purchase_limit per action
+        - Triple nested loop: actions × budget values × quantities
+
+    Space Complexity: O(W) where:
+        - W = scaled budget (max_budget * SCALE_FACTOR)
+        - dp array stores one value per possible budget amount
+        - No recursion overhead (iterative approach)
+        - Space-optimized: only current budget states needed
+
+    Note: This is the most balanced algorithm - optimal results with reasonable
+    performance for moderate memory sizes.
+    """
+
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: set = actions
         self.max_budget: float = max_budget

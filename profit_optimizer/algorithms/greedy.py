@@ -3,6 +3,26 @@ from profit_optimizer.utils import logger, timing_decorator
 
 
 class Greedy:
+    """
+    Greedy algorithm for the knapsack problem.
+    Selects actions in order of decreasing benefits until budget is exhausted.
+
+    Time Complexity: O(n * log n) where:
+        - O(n log n) for sorting actions by benefits (dominant operation)
+        - O(n * L) for the greedy selection loop
+        - Overall: O(n log n) since sorting dominates when L is small
+        where n = number of actions, L = purchase_limit
+
+    Space Complexity: O(n) where:
+        - O(n) for the sorted_actions list (copy of original actions)
+        - O(k) for the wallet list, where k ≤ n*L (selected actions)
+        - No recursion, so no stack overhead
+        - Linear space usage, very memory efficient
+
+    Note: This is a heuristic (understand by :quick and simple) algorithm that provides a good approximation
+    quickly, but doesn't guarantee the globally optimal solution.
+    """
+
     def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
         self.actions: list = list(actions)
         self.max_budget: float = max_budget
