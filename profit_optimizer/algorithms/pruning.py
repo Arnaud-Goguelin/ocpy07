@@ -3,8 +3,8 @@ from profit_optimizer.utils import timing_decorator
 
 
 class Pruning:
-    def __init__(self, actions: list[Action], max_budget: float, purchase_limit: int):
-        self.actions: list = actions
+    def __init__(self, actions: set[Action], max_budget: float, purchase_limit: int):
+        self.actions: list = list(actions)
         self.max_budget: float = max_budget
         self.purchase_limit: int = purchase_limit
         self.max_benefits = 0
@@ -140,7 +140,10 @@ class Pruning:
         """
         # Initial sort to optimize pruning
         # Higher ratio actions are explored first, improving bound calculations
-        # self.actions.sort(key=lambda a: a.benefits, reverse=True)
+        # MOREOVER: use a list is necessary with this algorithm to get each time the same result
+        # if we keep a set, it is not ordered, and pruning algo may reach different bounds each time and not find
+        # the same result each time
+        self.actions.sort(key=lambda a: a.benefits, reverse=True)
 
         # Initialize and run algorithm
         self.max_benefits = 0

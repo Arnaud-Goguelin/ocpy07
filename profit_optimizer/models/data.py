@@ -57,6 +57,8 @@ class Data:
             # read first line and ignore it => skip headers
             next(reader)
 
+            # using a set allows us to delete duplicate Action (cf. __eq__ method in Action model)
+            # this avoids to analyze many times the same actions in algorithms
             self.actions = {
                 Action(
                     name=row["Actions"],
